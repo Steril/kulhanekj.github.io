@@ -1,27 +1,14 @@
-var vid = document.getElementById("bgvid"),
-pauseButton = document.getElementById("vidpause");
-if (window.matchMedia('(prefers-reduced-motion)').matches) {
-    vid.removeAttribute("autoplay");
-    vid.pause();
-    pauseButton.innerHTML = "Paused";
-}
 
-function vidFade() {
-    vid.classList.add("stopfade");
-}
-vid.addEventListener('ended', function() {
-    // only functional if "loop" is removed 
-     vid.pause();
-	// to capture IE10
-	vidFade();
+$(document).ready(function () {
+      $('a[href^="#"]').on('click', function(event) {
+    var target = $(this.getAttribute('href'));
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
 });
-pauseButton.addEventListener("click", function() {
-    vid.classList.toggle("stopfade");
-	if (vid.paused) {
-vid.play();
-		pauseButton.innerHTML = "Pause";
-	} else {
-        vid.pause();
-        pauseButton.innerHTML = "Paused";
-	}
-})
+    
+    }); //document ready
+    
